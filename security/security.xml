@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+         <record id="hospital_security_categ" model="ir.module.category">
+            <field name="name">Hospital</field>
+            <field name="sequence" eval="1"/>
+         </record>
+
+        <record id="hospital_security_user" model="res.groups">
+            <field name="name">User</field>
+            <field name="category_id" ref="hospital.hospital_security_categ"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+        <record id="hospital_security_Doc" model="res.groups">
+            <field name="name">Doctor</field>
+            <field name="category_id" ref="hospital.hospital_security_categ"/>
+        </record>
+        <record id="hospital_doc_rule" model="ir.rule">
+            <field name="name">doctor rule</field>
+            <field ref="model_res_partner" name="model_id"/>
+            <field name="domain_force">['|',('name', '=',user.id ),('function','=','patient')]</field>
+            <field name="perm_write" eval="1"/>
+            <field name="perm_create" eval="1"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_unlink" eval="1"/>
+            <!-- You can attach this rule to a specific group, Or make it Global -->
+            <field name="groups" eval="[(4, ref('hospital.hospital_security_Doc'))]"/>
+            <!--<field name="global" eval="1"/> -->
+        </record>
+    </data>
+</odoo>

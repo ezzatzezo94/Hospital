@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+        <record id="seq_pos_hospital_device" model="ir.sequence">
+             <field name="name">device</field>
+             <field name="code">hospital.device</field>
+             <field name="prefix">DV</field>
+             <field name="padding">3</field>
+             <field name="company_id" eval="False" />
+        </record>
+
+        <record id="seq_pos_hospital_room" model="ir.sequence">
+             <field name="name">room</field>
+             <field name="code">hospital.room</field>
+             <field name="prefix">Rm</field>
+             <field name="padding">3</field>
+             <field name="company_id" eval="False" />
+        </record>
+        <record id="seq_pos_hospital_sections" model="ir.sequence">
+             <field name="name">sections</field>
+             <field name="code">hospital.sections</field>
+             <field name="prefix">SC</field>
+             <field name="padding">3</field>
+             <field name="company_id" eval="False" />
+        </record>
+        <record id="seq_pos_hospital_order" model="ir.sequence">
+             <field name="name">order</field>
+             <field name="code">hospital.order</field>
+             <field name="prefix">RO</field>
+             <field name="padding">3</field>
+             <field name="company_id" eval="False" />
+        </record>
+        <record id="seq_pos_reveal_order" model="ir.sequence">
+             <field name="name">reveal</field>
+             <field name="code">hospital.reveal</field>
+             <field name="prefix">RE</field>
+             <field name="padding">3</field>
+             <field name="company_id" eval="False" />
+        </record>
+
+    </data>
+</odoo>

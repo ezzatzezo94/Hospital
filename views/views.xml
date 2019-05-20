@@ -1,0 +1,140 @@
+<odoo>
+  <data>
+
+      <record id="res_partner_menu_doctor_action" model="ir.actions.act_window">
+          <field name="name">Doctor</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">res.partner</field>
+          <field name="domain">[('function','=','doctor')]</field>
+          <field name="context">{}</field>
+          <field name="view_mode">kanban,form</field>
+          <field name="arch" type="xml">
+          <kanban string="">
+
+              </kanban>
+          </field>
+      </record>
+
+      <record id="res_partner_menu_patient_action" model="ir.actions.act_window">
+          <field name="name">Patient</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">res.partner</field>
+          <field name="domain">[('function','=','patient')]</field>
+          <field name="view_mode">kanban,form</field>
+          <field name="arch" type="xml">
+          <kanban string="">
+
+              </kanban>
+          </field>
+      </record>
+
+      <record id="res_partner_menu_assistant_action" model="ir.actions.act_window">
+          <field name="name">Nurse</field>
+          <field name="type">ir.actions.act_window</field>
+          <field name="res_model">res.partner</field>
+          <field name="domain">[('function','=','nurse')]</field>
+          <field name="view_mode">kanban,form</field>
+          <field name="arch" type="xml">
+          <kanban string="">
+
+              </kanban>
+          </field>
+      </record>
+
+    <!-- Inherit Form View to Modify it -->
+    <record id="view_hospital_partner" model="ir.ui.view">
+        <field name="name">res.partner.formc</field>
+        <field name="model">res.partner</field>
+        <field name="inherit_id" ref="base.view_partner_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//field[@name='company_type']" position="attributes">
+              <!-- Add your fields or attributes here -->
+                <attribute name="invisible">True</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='title']" position="attributes">
+              <!-- Add your fields or attributes here -->
+                <attribute name="invisible">True</attribute>
+            </xpath>
+            <!--<xpath expr="//field[@name='category_id']" position="attributes">-->
+              <!--&lt;!&ndash; Add your fields or attributes here &ndash;&gt;-->
+                <!--<attribute name="invisible">True</attribute>-->
+            <!--</xpath>-->
+            <xpath expr="//field[@name='category_id']" position="replace">
+              <!-- Add your fields or attributes here -->
+                <field name="sections_id" string="Department" attrs="{'invisible':['|',('is_company','=',True),('function','=','patient')]}" options="{'no_create': True, 'no_open': True}"/>
+            </xpath>
+
+            <xpath expr="//field[@name='function']" position="replace">
+              <!-- Add your fields or attributes here -->
+                <field name="function" string="Title" widget="radio" options='{"horizontal": 1,"no_create": True,"no_open": True}' attrs="{'invisible':[('is_company','=',True)]}"  />
+            </xpath>
+
+        </field>
+    </record>
+
+       <record id="contacts.action_contacts" model="ir.actions.act_window">
+        <field name="name">Partner</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">res.partner</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="search_view_id" ref="base.view_res_partner_filter"/>
+        <field name="help" type="html">
+          <p class="oe_view_nocontent_create">
+            Click to add a contact in your contacts directory.
+          </p><p>
+            Odoo helps you easily track all activities related to
+            a customer: discussions, history of business opportunities,
+            documents, etc.
+          </p>
+        </field>
+    </record>
+
+
+
+            <delete model="ir.ui.menu" id="contacts.menu_partner_title_contact" />
+            <delete model="ir.ui.menu" id="contacts.menu_partner_category_form" />
+
+            <menuitem id="contacts.res_partner_menu_config"
+                    name="Configuration"
+                    parent="contacts.menu_contacts"
+                    groups="base.group_system"
+                    sequence="8"/>
+
+
+
+            <menuitem name="Hospital"
+                    id="contacts.menu_contacts"
+                    sequence="4"
+                    web_icon="contacts,static/description/icon.png"
+                    groups="hospital.hospital_security_Doc"/>
+
+            <menuitem id="contacts.res_partner_menu_contacts"
+                      name="Partner"
+                     parent="contacts.menu_contacts"
+                                           sequence="2"/>
+            <!-- This Menu Item must have a parent and an action -->
+            <menuitem id="contacts.res_partner_menu_action_Partner"
+                      name="Partner" parent="contacts.res_partner_menu_contacts"
+                      action="contacts.action_contacts" sequence="1"/>
+
+            <menuitem id="contacts.res_partner_menu_action_doctors"
+                      name="Doctors" parent="contacts.res_partner_menu_contacts"
+                      action="res_partner_menu_doctor_action" sequence="2"/>
+
+            <menuitem id="contacts.res_partner_menu_action_nurse"
+                      name="Nurse" parent="contacts.res_partner_menu_contacts"
+                      action="res_partner_menu_assistant_action"
+                      sequence="3"/>
+
+            <menuitem id="contacts.res_partner_menu_action_patient"
+                          name="Patient" parent="contacts.res_partner_menu_contacts"
+                          action="res_partner_menu_patient_action"
+                      groups="hospital.hospital_security_Doc"
+                      sequence="4"/>
+
+
+  </data>
+</odoo>

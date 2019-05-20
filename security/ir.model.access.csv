@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_hospital_security_user,hospital.hospital user,model_res_partner,hospital_security_user,1,1,1,0
+access_hospital_security_doctor,hospital.hospital doctor,model_res_partner,hospital_security_Doc,1,1,1,0
+access_hospital_security_doctor_order,hospital.hospital doctor order,model_hospital_order,hospital_security_Doc,1,1,1,0
+access_hospital_security_doctor_sections,hospital.hospital doctor section,model_hospital_sections,hospital_security_Doc,1,0,0,0
+access_hospital_security_doctor_room,hospital.hospital doctor room,model_hospital_room,hospital_security_Doc,1,0,1,0
+access_hospital_security_doctor_device,hospital.hospital doctor device,model_hospital_device,hospital_security_Doc,1,0,1,0

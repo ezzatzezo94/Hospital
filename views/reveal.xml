@@ -1,0 +1,51 @@
+<odoo>
+    <data>
+
+
+        <record id="res_partner_reveal_form" model="ir.ui.view">
+            <field name="name">Reveal</field>
+            <field name="model">hospital.reveal</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                         <div class="oe_title">
+                            <label for="code" class="oe_edit_only"/>
+                            <h1><field name="code"  readonly="True"/></h1>
+                        </div>
+                        <group>
+                        <group>
+                            <field name="patient_id" options="{'no_create': True, 'no_open': True}"/>
+                            <field name="doctor_id"   widget="many2many_tags"  options="{'no_create': True, 'no_open': True}"/>
+                        </group>
+                        <group>
+                            <field name="sections_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
+
+                        </group>
+                        </group>
+                        <group>
+                        <field name="description"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+         <record id="res_partner_menu_reveal_action" model="ir.actions.act_window">
+             <field name="name">Reveal</field>
+             <field name="type">ir.actions.act_window</field>
+             <field name="res_model">hospital.reveal</field>
+             <field name="view_mode">tree,form</field>
+             <field name="arch" type="xml">
+               <p class="oe_view_nocontent_create">
+                <!-- Add Text Here -->
+              </p><p>
+                <!-- More details about what a user can do with this object will be OK -->
+              </p>
+          </field>
+      </record>
+
+        <menuitem id="hospital_reveal_menu" name="Reveal" parent="contacts.menu_contacts"
+                  action="res_partner_menu_reveal_action" sequence="7"/>
+
+    </data>
+</odoo>
