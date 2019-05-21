@@ -1,11 +1,21 @@
 from odoo import models, fields, api
+from datetime import datetime
+
 
 
 class order(models.Model):
     _name = 'hospital.order'
     _rec_name = 'code'
 
+    @api.multi
+    def calculate_today(self):
+        for rec in self:
+            rec.date = datetime.today().date()
+
+
     code = fields.Char()
+    date = fields.Date(string="date", required=False, compute='calculate_today' )
+
     description = fields.Text(string="Description", required=False, )
     room_id = fields.Many2one(comodel_name="hospital.room", string="Room number", required=False, )
     sections_ids = fields.Many2many(comodel_name="hospital.sections", string="Department", required=False, )

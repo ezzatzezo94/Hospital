@@ -20,6 +20,7 @@
                         <group>
                             <field name="sections_ids" widget="many2many_tags" options="{'no_create': True, 'no_open': True}"/>
                             <field name="doctor_id"   widget="many2many_tags"  options="{'no_create': True, 'no_open': True}"/>
+                            <field name="date" readonly="1"/>
                         </group>
                         </group>
                         <group>
@@ -46,6 +47,8 @@
 
         <menuitem id="hospital_reservation_order_menu" name="Reservation Order" parent="contacts.menu_contacts"
                   action="res_partner_menu_reservation_order_action" sequence="6"/>
+
+
 
     </data>
 </odoo>

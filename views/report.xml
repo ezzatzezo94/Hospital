@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<odoo>
+    <data>
+                <report
+                    id="view_hospital_order_report"
+                    model="hospital.order"
+                    report_type="qweb-pdf"
+                    string="Order"
+                    name="hospital.hospital_order_reports"
+                    file="hospital.hospital_order_reports"
+                />
+
+                <template id='hospital_order_reports'>
+                    <t t-call='web.html_container'>
+                        <t t-foreach='docs' t-as='doc'>
+                            <t t-call='web.external_layout'>
+                                <div class='page'>
+                                    <h1 class="text-center">Reservation Order</h1>
+                                    <h2  class="text-center">Code <span t-field='doc.code'/></h2>
+                                    <p> patient Name: <span t-field='doc.patient_id'/></p>
+                                    <p> Room Number: <span t-field='doc.room_id'/></p>
+                                    <p> Date <span  t-field="doc.date"/></p>
+                                    <table class="table report_border table-hover table-striped">
+                                        <thead>
+                                        <tr>
+                                            <th style="padding: 0px;" class="text-center">Department</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr t-foreach="doc.sections_ids" t-as="l" style="font-weight:bold;padding: 0px;" class="text-center" >
+                                                       <td>
+                                                           <span t-field='doc.sections_ids.name'/>
+                                                       </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </t>
+                        </t>
+                    </t>
+                </template>
+
+    </data>
+</odoo>

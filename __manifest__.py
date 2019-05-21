@@ -32,6 +32,7 @@
         'views/room.xml',
         'views/Sections.xml',
         'views/reservation_order.xml',
+        'views/report.xml',
         'data/data.xml',
     ],
     # only loaded in demonstration mode
